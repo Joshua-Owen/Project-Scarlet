@@ -8,6 +8,9 @@ public class PlayerInput : MonoBehaviour
     InputAction moveAction;
     InputAction jumpAction;
     InputAction rollAction;
+    InputAction lightAction;
+    InputAction heavyAction;
+    InputAction specialAction;
 
     public Vector2 moveValue;
 
@@ -20,12 +23,18 @@ public class PlayerInput : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         rollAction = InputSystem.actions.FindAction("Roll");
+        lightAction = InputSystem.actions.FindAction("LightAttack");
+        heavyAction = InputSystem.actions.FindAction("HeavyAttack");
+        specialAction = InputSystem.actions.FindAction("SpecialAttack");
+
 
         // make sure the actions are enabled so they start updating
         moveAction?.Enable();
         jumpAction?.Enable();
         rollAction?.Enable();
-
+        lightAction?.Enable();
+        heavyAction?.Enable();
+        specialAction?.Enable();
     }
 
     // we no longer need to poll in Update; jumpPressed will be set by the
