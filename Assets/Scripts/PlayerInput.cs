@@ -17,15 +17,20 @@ public class PlayerInput : MonoBehaviour
     // cached flag that represents whether a jump was triggered this frame
     public bool jumpPressed;
     public bool rollPressed;
+    public bool lightPressed;
+    public bool heavyPressed;
+    public bool specialPressed;
+
+
     void Start()
     {
         player = GetComponent<PlayerController>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         rollAction = InputSystem.actions.FindAction("Roll");
-        lightAction = InputSystem.actions.FindAction("LightAttack");
-        heavyAction = InputSystem.actions.FindAction("HeavyAttack");
-        specialAction = InputSystem.actions.FindAction("SpecialAttack");
+        lightAction = InputSystem.actions.FindAction("Light Attack");
+        heavyAction = InputSystem.actions.FindAction("Heavy Attack");
+        specialAction = InputSystem.actions.FindAction("Special Attack");
 
 
         // make sure the actions are enabled so they start updating
@@ -45,6 +50,9 @@ public class PlayerInput : MonoBehaviour
         // cache movement or other one-shot inputs.
         //GetJumpInput();
         //GetRollInput();
+        GetLightInput();
+        GetHeavyInput();
+        GetSpecialInput();
     }
 
     /// <summary>
@@ -79,4 +87,21 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
+
+    public void GetLightInput()
+    {
+        if(lightAction.WasPressedThisFrame()) lightPressed = true;
+    }
+
+    public void GetHeavyInput()
+    {
+        if(heavyAction.WasPressedThisFrame()) heavyPressed = true;
+    }
+    public void GetSpecialInput()
+    {
+        if(specialAction.WasPressedThisFrame()) specialPressed = true;
+    }
+
+
+
 }

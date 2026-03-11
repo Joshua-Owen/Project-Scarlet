@@ -12,6 +12,8 @@ public class PlayerStateMachine : MonoBehaviour
     public JumpState JumpState {get; private set; }
     public FallState FallState {get; private set; }
     public RollState RollState {get; private set; }
+    public AttackState AttackState {get; private set; }
+
     // cache the player reference so states can be created
     public PlayerController player { get; private set; }
     public PlayerInput input { get; private set; }
@@ -40,6 +42,7 @@ public class PlayerStateMachine : MonoBehaviour
         JumpState = new JumpState(this, player, input);
         FallState = new FallState(this, player, input);
         RollState = new RollState(this, player, input);
+        AttackState = new AttackState(this, player, input);
     }
 
 
@@ -68,7 +71,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     
 
-    
+    #region "Locomotion"
+
 
     public bool HasMovementInput()
     {
@@ -113,5 +117,49 @@ public class PlayerStateMachine : MonoBehaviour
     {
         rollLockedUntil = Time.time + rollCooldown;
     }
-    
+    #endregion
+
+    #region Attack
+
+    public bool HasLightAttackInput()
+    {
+        if (input.lightPressed)
+        {
+            Debug.Log($"light pressed is {input.lightPressed}");
+            input.lightPressed = false;
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasHeavyAttackInput()
+    {
+
+        if (input.heavyPressed)
+        {
+            Debug.Log($"heavy pressed is {input.heavyPressed}");
+            input.heavyPressed = false;
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasSpecialAttackInput()
+    {
+        if (input.specialPressed)
+        {
+            Debug.Log($"special pressed is {input.specialPressed}");
+            input.specialPressed = false;
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasAnyAttackInput()
+    {
+        if( HasLightAttackInput() || HasHeavyAttackInput() || HasSpecialAttackInput()) return true;
+        else return false;
+    }
+
+    #endregion
 }

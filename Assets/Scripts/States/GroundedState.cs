@@ -14,7 +14,6 @@ public abstract class GroundedState : PlayerState
     {
         player.HandleGravity();
   
-        player.animator.SetFloat("Velocity", Mathf.Abs(input.GetMovementInput().magnitude)/*Mathf.Abs(new Vector3(player.moveDir.x, 0, player.moveDir.z).magnitude)*/);
         
         if (!player.isGrounded)
         {
