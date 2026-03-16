@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0f69fd4f4ad106447896fb775199ed37
+guid: 48fa84abc2c3a744e8561044d83beb93
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,18 +33,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: HumanF@Idle01
+      name: HumanF@Attack2H01
       takeName: Untitled
       internalID: 3094330708855449807
       firstFrame: 0
-      lastFrame: 81
+      lastFrame: 48
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -971,5 +971,5 @@ AssetOrigin:
   productId: 165785
   packageName: Human Melee Animations FREE
   packageVersion: 2.0.2
-  assetPath: Assets/Imports/Kevin Iglesias/Human Animations/Animations/Female/Idles/HumanF@Idle01.fbx
+  assetPath: Assets/Imports/Kevin Iglesias/Human Animations/Animations/Female/Combat/2H/HumanF@Attack2H01.fbx
   uploadId: 825254

@@ -7,5 +7,5 @@ public class AttackData : ScriptableObject
     public float damage;
     public float knockback;
     public float comboWindowStart;
-    public float combowindowEnd;
+    public float comboWindowEnd;
 }

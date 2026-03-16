@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float sphereRadius;
     public float castDistance;
+
+
+
+    public AttackData[] lightCombo;
     void Awake()
     {
         character = GetComponent<CharacterController>();
