@@ -42,7 +42,7 @@ public class PlayerStateMachine : MonoBehaviour
         JumpState = new JumpState(this, player, input);
         FallState = new FallState(this, player, input);
         RollState = new RollState(this, player, input);
-        AttackState = new AttackState(this, player, input);
+        AttackState = new AttackState(this, player, input, player.lightCombo);
     }
 
 

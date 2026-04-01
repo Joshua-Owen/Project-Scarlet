@@ -19,5 +19,10 @@ public class IdleState : LocomotionState
         {
             stateMachine.ChangeState(stateMachine.MoveState);
         }
+        if(stateMachine.HasLightAttackInput())
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
+            return;
+        }
     }
 }

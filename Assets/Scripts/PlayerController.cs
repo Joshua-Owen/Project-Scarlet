@@ -21,12 +21,13 @@ public class PlayerController : MonoBehaviour
     public float gravity = -9.81f;
     public float verticalVelocity;
 
+   
+
     public bool isGrounded;
     RaycastHit hit;
     public LayerMask groundLayer;
     public float sphereRadius;
     public float castDistance;
-
 
 
     public AttackData[] lightCombo;

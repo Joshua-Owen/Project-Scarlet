@@ -22,10 +22,11 @@ public class LocomotionState : GroundedState
             stateMachine.ChangeState(stateMachine.RollState);
             return;
         }
-        if(stateMachine.HasAnyAttackInput())
+        if (stateMachine.HasLightAttackInput())
         {
             stateMachine.ChangeState(stateMachine.AttackState);
             return;
         }
+     
     }
 }

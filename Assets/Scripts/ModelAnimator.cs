@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class ModelAnimator : MonoBehaviour
@@ -20,7 +21,10 @@ public class ModelAnimator : MonoBehaviour
     {
         
     }
-
+    void OnAttackFinished()
+    {
+       stateMachine.ChangeState(stateMachine.IdleState);
+    }
     
     public void OnRollFinished()
     {

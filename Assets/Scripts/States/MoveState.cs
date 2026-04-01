@@ -13,5 +13,10 @@ public class MoveState : LocomotionState
 
             stateMachine.ChangeState(stateMachine.IdleState);
         }
+          if(stateMachine.HasLightAttackInput())
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
+            return;
+        }
     }
 }
