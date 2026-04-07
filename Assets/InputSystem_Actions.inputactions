@@ -443,6 +443,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f017ea0d-ce68-403b-977c-05cb9227a943",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Light Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1873d11c-d0dd-45a2-b537-fa84af9c3a51",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",

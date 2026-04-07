@@ -21,10 +21,34 @@ public class ModelAnimator : MonoBehaviour
     {
         
     }
-    void OnAttackFinished()
+    public void OnAttackFinished()
     {
-       stateMachine.ChangeState(stateMachine.IdleState);
+        if (stateMachine.CurrentState is AttackState attack)
+        {
+            attack.FinishAttack();
+        }
     }
+
+
+    public void OnComboWindowOpen()
+    {
+        Debug.Log("is combo window is open");
+        if (stateMachine.CurrentState is AttackState attack)
+        {
+            attack.EnableCombo();
+            Debug.Log("is combo is enabled");
+        }
+    }
+
+    public void OnComboWindowClose()
+    {   
+        Debug.Log("is combo window is closed");
+        if (stateMachine.CurrentState is AttackState attack)
+        {
+            attack.DisableCombo();
+        }
+    }
+
     
     public void OnRollFinished()
     {

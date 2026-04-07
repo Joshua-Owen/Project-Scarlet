@@ -117,6 +117,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         rollLockedUntil = Time.time + rollCooldown;
     }
+
+
     #endregion
 
     #region Attack
@@ -161,5 +163,10 @@ public class PlayerStateMachine : MonoBehaviour
         else return false;
     }
 
+
+    public void LockAttack()
+    {
+        
+    }
     #endregion
 }
