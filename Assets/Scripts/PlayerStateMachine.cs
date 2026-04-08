@@ -134,17 +134,7 @@ public class PlayerStateMachine : MonoBehaviour
         return false;
     }
 
-    public bool HasHeavyAttackInput()
-    {
 
-        if (input.heavyPressed)
-        {
-            Debug.Log($"heavy pressed is {input.heavyPressed}");
-            input.heavyPressed = false;
-            return true;
-        }
-        return false;
-    }
 
     public bool HasSpecialAttackInput()
     {
@@ -159,7 +149,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public bool HasAnyAttackInput()
     {
-        if( HasLightAttackInput() || HasHeavyAttackInput() || HasSpecialAttackInput()) return true;
+        if( HasLightAttackInput() || HasSpecialAttackInput()) return true;
         else return false;
     }
 

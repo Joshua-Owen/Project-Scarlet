@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float sphereRadius;
     public float castDistance;
-
-
+    public Collider hurtbox;
+    public GameObject[] weapons;
     public AttackData[] lightCombo;
     void Awake()
     {
@@ -39,8 +39,15 @@ public class PlayerController : MonoBehaviour
         // grab the attached state machine instead of creating a new one
         stateMachine = GetComponent<PlayerStateMachine>();
         camera = Camera.main.transform;
-
+        
    
+    }
+    void Start()
+    {
+        foreach (var weapon in weapons)
+        {
+            weapon.SetActive(false);
+        }
     }
     void GroundCheck()
     {

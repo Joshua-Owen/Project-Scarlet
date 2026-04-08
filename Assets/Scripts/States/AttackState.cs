@@ -21,8 +21,12 @@ public class AttackState : GroundedState
         comboIndex = 0;
         canChain = false;
         inputQueued = false;
-
+        foreach (var weapon in player.weapons)
+        {
+            weapon.SetActive(true);
+        }
         PlayAttack();
+
     }
 
     public override void OnUpdate()
@@ -35,7 +39,13 @@ public class AttackState : GroundedState
         }
        
     }
-
+    public override void OnExit()
+    {
+        foreach (var weapon in player.weapons)
+        {
+            weapon.SetActive(false);
+        }
+    }
     void PlayAttack()
     { 
         Debug.Log("play next attack");
@@ -59,9 +69,9 @@ public class AttackState : GroundedState
         if (inputQueued)
         {
             inputQueued = false;
-            FinishAttack();
+            NextAttack();
         }
-        //FinishAttack();
+        
     }
     void NextAttack()
     {
@@ -71,8 +81,10 @@ public class AttackState : GroundedState
         if (comboIndex >= combo.Length)
         {
             Debug.Log("combo index is greater or equal to combo length");
-            FinishAttack();
-            return;
+            comboIndex = 0;
+            //FinishAttack();
+            //return;
+            
         }
        
         canChain = false;

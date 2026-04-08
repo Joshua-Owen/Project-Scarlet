@@ -64,7 +64,15 @@ public class ModelAnimator : MonoBehaviour
             
         }
     }
-        
+
+    public void IFramesActive()
+    {
+        player.hurtbox.enabled = false;
+    }
+    public void IFramesInactive()
+    {
+        player.hurtbox.enabled = true;
+    }
 
     void OnAnimatorMove()
     {

@@ -102729,6 +102729,20 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.6333333
+    functionName: IFramesActive
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 4cbe2b33a304a9c41b7bb8bddecf100d, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.6666666
+    functionName: IFramesInactive
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 4cbe2b33a304a9c41b7bb8bddecf100d, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.3666666
     functionName: OnRollFinished
     data: 

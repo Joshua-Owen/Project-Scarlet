@@ -43,15 +43,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Heavy Attack",
-                    "type": "Button",
-                    "id": "47dfbcf9-ad7e-4cc6-9fdd-c7e05d0fe15d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Special Attack",
                     "type": "Button",
                     "id": "1098601e-34e7-47de-ad0b-7aed9abcab90",
@@ -449,17 +440,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Light Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1873d11c-d0dd-45a2-b537-fa84af9c3a51",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heavy Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

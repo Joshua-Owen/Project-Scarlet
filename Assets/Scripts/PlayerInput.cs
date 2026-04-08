@@ -18,7 +18,6 @@ public class PlayerInput : MonoBehaviour
     public bool jumpPressed;
     public bool rollPressed;
     public bool lightPressed;
-    public bool heavyPressed;
     public bool specialPressed;
 
 
@@ -29,7 +28,6 @@ public class PlayerInput : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         rollAction = InputSystem.actions.FindAction("Roll");
         lightAction = InputSystem.actions.FindAction("Light Attack");
-        heavyAction = InputSystem.actions.FindAction("Heavy Attack");
         specialAction = InputSystem.actions.FindAction("Special Attack");
 
 
@@ -51,7 +49,6 @@ public class PlayerInput : MonoBehaviour
         //GetJumpInput();
         //GetRollInput();
         GetLightInput();
-        GetHeavyInput();
         GetSpecialInput();
     }
 
@@ -93,10 +90,7 @@ public class PlayerInput : MonoBehaviour
         if(lightAction.WasPressedThisFrame()) lightPressed = true;
     }
 
-    public void GetHeavyInput()
-    {
-        if(heavyAction.WasPressedThisFrame()) heavyPressed = true;
-    }
+
     public void GetSpecialInput()
     {
         if(specialAction.WasPressedThisFrame()) specialPressed = true;
