@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 //[RequireComponent(typeof(PlayerStateMachine))]
@@ -28,9 +29,22 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float sphereRadius;
     public float castDistance;
+    
+    
+    
     public Collider hurtbox;
     public GameObject[] weapons;
     public AttackData[] lightCombo;
+
+    public CinemachineCamera virtualCamera;
+    Transform lockedTarget;
+    bool isLockedOn;
+    public float lockOnRange = 15f;
+    public LayerMask enemyLayer;
+
+
+
+    public Transform enemyt;
     void Awake()
     {
         character = GetComponent<CharacterController>();
@@ -56,6 +70,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundCheck();
+        input.GetLockOnInput();
+        HandleLockOn();
+
+        
     }
     void FixedUpdate()
     {
@@ -82,7 +100,14 @@ public class PlayerController : MonoBehaviour
         {
             //lock to currrent speed
             moveSpeed = moveSpeed;
-            horizontalMove = CameraRelativeDirection(horizontalMove);
+            if (!isLockedOn)
+                horizontalMove = CameraRelativeDirection(horizontalMove);
+            else
+            {
+                Vector3 right = camera.right;
+                Vector3 forward = Vector3.Cross(Vector3.up, right);
+                horizontalMove = right * inputValue.x + forward * inputValue.y;
+            }
             HandleRotation();
             //air resistance
             character.Move(horizontalMove * moveSpeed * airResistance * Time.deltaTime);
@@ -90,27 +115,113 @@ public class PlayerController : MonoBehaviour
         else
         {
             moveSpeed = inputValue.magnitude >= 0.5f ? runSpeed : walkSpeed;
-
-            horizontalMove = CameraRelativeDirection(horizontalMove);
+            
+            if (!isLockedOn)
+                horizontalMove = CameraRelativeDirection(horizontalMove);
+            else
+            {
+                Vector3 right = camera.right;
+                Vector3 forward = Vector3.Cross(Vector3.up, right);
+                horizontalMove = right * inputValue.x + forward * inputValue.y;
+            }
             HandleRotation();
 
             character.Move(horizontalMove * moveSpeed * Time.deltaTime);
+        }
+    }
 
+    private void HandleRotation()
+    {
+        if (isLockedOn && lockedTarget != null)
+        {
+            Vector3 lookDir = lockedTarget.position - transform.position;
+            lookDir.y = 0;
+            if (lookDir.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(lookDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            if(moveDir.sqrMagnitude < 0.001f) return;
+            moveDir = CameraRelativeDirection(moveDir);
+
+            Quaternion targetRot = Quaternion.LookRotation(moveDir);
+            transform.rotation = isGrounded ?
+                Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime)
+                : Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * airResistance * Time.deltaTime);
+        }
+    }
+
+    private void HandleLockOn()
+    {
+        if (input.lockOnPressed && !isLockedOn)
+        {
+            // Toggle on: lock to nearest target
+            LockOn(FindLockOnTarget());
+            input.lockOnPressed = false; // consume input
+        }
+        else if (!input.lockOnPressed && isLockedOn)
+        {
+            // Toggle off: unlock
+            Unlock();
+        }
+        
+        if (isLockedOn && lockedTarget == null)
+        {
+            Unlock();
+        }
+    }
+
+    private Transform FindLockOnTarget()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, lockOnRange, enemyLayer);
+        Transform best = null;
+        float bestScore = float.MaxValue;
+
+        foreach (var hit in hits)
+        {
+            Transform t = hit.transform;
+            Vector3 dir = t.position - transform.position;
+            float dist = dir.magnitude;
+            if (dist >= bestScore) continue;
+
+            float forwardDot = Vector3.Dot(transform.forward, dir.normalized);
+            if (forwardDot < 0.2f) continue;
+
+            best = t;
+            bestScore = dist;
         }
 
+        return best;
     }
-
-        private void HandleRotation()
+    
+    private void LockOn(Transform target)
     {
-        if(moveDir.sqrMagnitude < 0.001f) return;
-        moveDir = CameraRelativeDirection(moveDir);
+        lockedTarget = target;
+        isLockedOn = target != null;
 
-        Quaternion targetRot = Quaternion.LookRotation(moveDir);
-        transform.rotation = isGrounded ?
-            Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime)
-            : Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * airResistance * Time.deltaTime);
+        if (virtualCamera != null)
+        {
+            virtualCamera.LookAt = lockedTarget;
+            var composer = (CinemachineRotationComposer)virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Aim);
+            if (composer != null)
+            {
+                composer.TargetOffset = Vector3.up * 1.2f;
+            }
+        }
     }
 
+    void Unlock()
+    {
+        isLockedOn = false;
+        lockedTarget = null;
+        if ( virtualCamera != null)
+        {
+            virtualCamera.LookAt = transform;
+        }
+    }
     Vector3 CameraRelativeDirection(Vector3 initialDir)
     {
         // Convert a local input direction into a world-space direction

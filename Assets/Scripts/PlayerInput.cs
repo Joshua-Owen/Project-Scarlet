@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     InputAction lightAction;
     InputAction heavyAction;
     InputAction specialAction;
-
+    InputAction lockOnAction;
     public Vector2 moveValue;
 
     // cached flag that represents whether a jump was triggered this frame
@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     public bool rollPressed;
     public bool lightPressed;
     public bool specialPressed;
-
+    public bool lockOnPressed;
 
     void Start()
     {
@@ -29,15 +29,15 @@ public class PlayerInput : MonoBehaviour
         rollAction = InputSystem.actions.FindAction("Roll");
         lightAction = InputSystem.actions.FindAction("Light Attack");
         specialAction = InputSystem.actions.FindAction("Special Attack");
-
+        lockOnAction = InputSystem.actions.FindAction("Lock-On");
 
         // make sure the actions are enabled so they start updating
         moveAction?.Enable();
         jumpAction?.Enable();
         rollAction?.Enable();
         lightAction?.Enable();
-        heavyAction?.Enable();
         specialAction?.Enable();
+        lockOnAction?.Enable();
     }
 
     // we no longer need to poll in Update; jumpPressed will be set by the
@@ -50,6 +50,7 @@ public class PlayerInput : MonoBehaviour
         //GetRollInput();
         GetLightInput();
         GetSpecialInput();
+        GetLockOnInput();
     }
 
     /// <summary>
@@ -94,6 +95,12 @@ public class PlayerInput : MonoBehaviour
     public void GetSpecialInput()
     {
         if(specialAction.WasPressedThisFrame()) specialPressed = true;
+    }
+
+    public void GetLockOnInput()
+    {
+        if(lockOnAction.WasPressedThisFrame()) lockOnPressed = !lockOnPressed;
+        Debug.Log($"LockOn is {lockOnPressed}");
     }
 
 

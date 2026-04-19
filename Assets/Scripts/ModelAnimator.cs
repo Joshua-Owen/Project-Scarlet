@@ -32,17 +32,17 @@ public class ModelAnimator : MonoBehaviour
 
     public void OnComboWindowOpen()
     {
-        Debug.Log("is combo window is open");
+        //Debug.Log("is combo window is open");
         if (stateMachine.CurrentState is AttackState attack)
         {
             attack.EnableCombo();
-            Debug.Log("is combo is enabled");
+            //Debug.Log("is combo is enabled");
         }
     }
 
     public void OnComboWindowClose()
     {   
-        Debug.Log("is combo window is closed");
+        //Debug.Log("is combo window is closed");
         if (stateMachine.CurrentState is AttackState attack)
         {
             attack.DisableCombo();
@@ -52,7 +52,7 @@ public class ModelAnimator : MonoBehaviour
     
     public void OnRollFinished()
     {
-        Debug.Log("roll is finished");
+        //Debug.Log("roll is finished");
         if (player.isGrounded)
         {
             stateMachine.ChangeState(stateMachine.IdleState);
@@ -73,7 +73,29 @@ public class ModelAnimator : MonoBehaviour
     {
         player.hurtbox.enabled = true;
     }
+    public void HitBoxActive()
+    {
+        int rightweapon = 1;
+        int leftweapon = 0;
+        if(stateMachine.AttackState.comboIndex % 2 == 0)
+        {
+            player.weapons[rightweapon].GetComponent<Collider>().enabled = true;
+            player.weapons[leftweapon].GetComponent<Collider>().enabled = false;
+        }
+        else
+        {
+            player.weapons[rightweapon].GetComponent<Collider>().enabled = false;
+            player.weapons[leftweapon].GetComponent<Collider>().enabled = true;
+        }
+    }
 
+    public void HitBoxInactive()
+    {
+        int rightweapon = 1;
+        int leftweapon = 0;
+        player.weapons[rightweapon].GetComponent<Collider>().enabled = false;
+        player.weapons[leftweapon].GetComponent<Collider>().enabled = false;
+    }
     void OnAnimatorMove()
     {
         if (stateMachine.CurrentState is RollState)

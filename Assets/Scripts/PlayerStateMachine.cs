@@ -127,7 +127,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (input.lightPressed)
         {
-            Debug.Log($"light pressed is {input.lightPressed}");
+            //Debug.Log($"light pressed is {input.lightPressed}");
             input.lightPressed = false;
             return true;
         }
@@ -140,7 +140,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (input.specialPressed)
         {
-            Debug.Log($"special pressed is {input.specialPressed}");
+            //Debug.Log($"special pressed is {input.specialPressed}");
             input.specialPressed = false;
             return true;
         }

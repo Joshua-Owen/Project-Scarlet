@@ -1,12 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
-public class AttackState : GroundedState
+public class AttackState : LocomotionState
 {
     public AttackData[] combo;
     bool canChain;
     bool inputQueued;
-    int comboIndex;
+    public int comboIndex;
     bool queuedNextAttack;
     float bufferTimer;
     const float bufferTime = 0.2f;
@@ -34,7 +34,7 @@ public class AttackState : GroundedState
         // queue input (don't consume instantly)
         if (stateMachine.HasLightAttackInput())
         {
-            Debug.Log("next attack is queued");
+            //Debug.Log("next attack is queued");
             inputQueued = true;
         }
        
@@ -48,7 +48,7 @@ public class AttackState : GroundedState
     }
     void PlayAttack()
     { 
-        Debug.Log("play next attack");
+        //Debug.Log("play next attack");
         player.animator.CrossFade(combo[comboIndex].animationName, 0.1f);  
        
     }
@@ -75,16 +75,16 @@ public class AttackState : GroundedState
     }
     void NextAttack()
     {
-        Debug.Log("Play next attack");
+        //Debug.Log("Play next attack");
         comboIndex++;
-        Debug.Log($"comboIndex {comboIndex}");
+        //Debug.Log($"comboIndex {comboIndex}");
         if (comboIndex >= combo.Length)
         {
-            Debug.Log("combo index is greater or equal to combo length");
+            //Debug.Log("combo index is greater or equal to combo length");
             comboIndex = 0;
             //FinishAttack();
             //return;
-            
+
         }
        
         canChain = false;
