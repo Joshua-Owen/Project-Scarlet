@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c8c5e668f6da143ba8d441795e44d3, type: 3}
+  m_Name: Attack 3
+  m_EditorClassIdentifier: Assembly-CSharp::AttackSO
+  animOv: {fileID: 22100000, guid: 1b713d39d63f47f40ac1b910a0bc9bec, type: 2}
+  clip: {fileID: 7400000, guid: 04d5b903379573942aaee2701c927abd, type: 2}
+  damage: 0
+  knockBack: 0
+  stamina: 0
