@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Joshua\\Documents\\GitHub\\Combat tests\\Assembly-CSharp.csproj",
+      "projectUniqueName": "C:\\Users\\Joshua\\Documents\\GitHub\\Project-Scarlet\\Assembly-CSharp.csproj",
       "projectName": "Assembly-CSharp",
-      "projectPath": "C:\\Users\\Joshua\\Documents\\GitHub\\Combat tests\\Assembly-CSharp.csproj",
+      "projectPath": "C:\\Users\\Joshua\\Documents\\GitHub\\Project-Scarlet\\Assembly-CSharp.csproj",
       "packagesPath": "C:\\Users\\Joshua\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Joshua\\Documents\\GitHub\\Combat tests\\Temp\\obj\\Assembly-CSharp\\",
+      "outputPath": "C:\\Users\\Joshua\\Documents\\GitHub\\Project-Scarlet\\Temp\\obj\\Assembly-CSharp\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Joshua\\AppData\\Roaming\\NuGet\\NuGet.Config"
